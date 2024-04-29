@@ -1,6 +1,7 @@
 Design Document
 Cade Evans
 Erinstagram
+
 Data
 Dis – 2D array of characters (rows x columns)
 Store – 2D array of integers (rows x columns)
@@ -9,6 +10,8 @@ Rows - int
 Columns – int
 Ext – int
 Img - FILE
+
+
 Actions
 This program performs a multitude of actions to an image.
 First, it asks the user to choose to load an image. Then the
@@ -22,7 +25,10 @@ like the image saved. If so then it asks the user what they
 would like the file to be named. After choosing a name, the
 user will be prompted with the first menu and will be repeated
 until the user chooses to exit.
+
+
 Functions
+
 main()
 Data: Arrays for image dimensions, variables for exit, load, display, and edit .
 Functionality: Prompt user to choose from a menu to load, display, or edit an
@@ -30,21 +36,30 @@ image. If the user chooses to edit the image then another menu is displayed
 asking if you would like to crop, dim, or brighten the image. After changes are
 made, prompt the user to save the image to a file and if yes then prompt asking
 for file name then return to first menu. When exit is entered, exit program
+
 loadImg()
 Input Parameters: int* rows, int* columns
 Returned Output: Img FILE
 Functionality: attempts to read the contents of an image of any size from a file
 name provided by the user. Also determines the rows and columns of the new
 image.
+
 convertImg()
 Input Parameters: “store” int 2D array, int rows, int columns
 Returned Output: char 2D array
 Functionality: Convert the values 0-4 into the corresponding character values.
+
 displayImg()
 Input Parameters: “dis” char 2D array, int rows, int columns
 Returned Output: none
 Functionality: print char 2D array, using the corresponding characters 0,O,o,.,
 and “ “.
+
+EditMenu()
+Input Parameters: Image Data
+Returned Output: Edit option function
+Functionality: Display edit menu, get user’s edit option choice, return edit option
+
 cropImg()
 Input Parameters: int* rows, int* columns
 Returned Output: none
