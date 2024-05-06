@@ -8,14 +8,13 @@
 int width, height;
 int pixels[MAX_SIZE][MAX_SIZE];
 
-void loadImg(char *fileName);
-void convertImg();
+int loadImg(char *fileName);
 void displayImage();
 void editMenu();
 void cropImg();
 void dimImg();
 void brightenImg();
-void saveImg(char *fileName);
+int saveImg(char *fileName);
 
 
 
@@ -41,12 +40,16 @@ int main() {
 	
 		case 1:
 		printf("Enter your file name: ");
+<<<<<<< HEAD
 		fgets(fileName, 100, stdin);
+=======
+		scanf("%s", fileName);
+>>>>>>> 79ff484c27892b01ad0f9443ae60bec3d2ac1ed6
 		loadImg(fileName);
 		break;
 		
 		case 2:
-		displayMenu();
+		displayImage();
 		break;
 		
 		case 3:
@@ -66,14 +69,20 @@ int main() {
 
 }
 
-int loadImg(Image *image, char *fileName) {
-    
+int loadImg(char *fileName) {
+	FILE *image = fopen(fileName, "r");
+	if (image == NULL){
+	printf("ERROR: Unable to open file for saving.\n");
+	return 0;
+	}
+	fscanf(image, "%d %d", &width, &height);
+	for (int j = 0; j < width; j++){
+		for(int k = 0; k <height; k++){
+		fscanf(image, "%d", &pixels[j][k]);	
+		}
+	}
+	fclose(image);
 }
-
-char convertImg() {
-
-}
-
 void displayImage() {
 
 	char can;
@@ -89,7 +98,7 @@ void displayImage() {
 	}
 }
 
-int editMenu() {
+void editMenu(){
 
 
 	char fileName[100];
@@ -122,11 +131,10 @@ int editMenu() {
 		break;
 		
 		case 4:
-		saveImg(fileName);
+		saveImg("edited_Image.txt");
 		break;
 		
 		case 5:
-		saveImg(fileName);
 		break;
 		
 		
@@ -135,8 +143,6 @@ int editMenu() {
 		break;
 		}
 	}					
-
-}
 
 }
 
@@ -162,8 +168,6 @@ void dimImg(){
 	
 	}
 
-}
-
 void brightenImg(){
 	for(int j = 0; j < height; j++){
 	   for(int k = 0; k < width; k++){
@@ -175,8 +179,21 @@ void brightenImg(){
 	
 }
 
-}
 
-void saveImg(Image *image, char *fileName){
+int saveImg(char *fileName){
+
+	FILE *image = fopen(fileName, "w");
+	if (image == NULL){
+	printf("ERROR: Unable to open file for saving.\n");
+	return 0;
+	}
+	fscanf(image, "%d %d", &width, &height);
+	for (int j = 0; j < width; j++){
+		for(int k = 0; k <height; k++){
+		fprintf(image, "%d", pixels[j][k]);	
+		}
+		fprintf(image, "\n");
+	}
+	fclose(image);
 
 }
