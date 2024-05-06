@@ -1,63 +1,73 @@
-//Authors: Jack Donelson [Partner 2], Cade Evans [Partner 1]
+//Authors: Jack Donelson, [Partner 2]
 //Purpose: User can load, display or edit pre-stored image file and save it as another image.
 #include <stdio.h>
 #include <stdbool.h>
 
-#define MACRO 50
-#define IN "pic.txt"
+#define MAX_SIZE 10000
 
-int loadImg(int pic[][50]);
+int width, height;
+int pixels[MAX_SIZE][MAX_SIZE]
+
+void loadImg(char *fileName);
+void convertImg();
+void displayImage();
+void editMenu();
+void cropImg();
+void dimImg();
+void brightenImg();
+void saveImg(char *fileName);
+
+
+
 
 //explicit *pointer
 int main() {
 
-	int ch = 0;
-	int pic[1][1];
+	char fileName[100];
+
+	int selection;
 	
-	do{
+	while(true){
+
+	printf(" Menu: \n");
+	printf("1. Load the Image: \n");
+	printf("2. Display the Image: \n");
+	printf("3. Edit the Image: \n");
+	printf("4. Exit: \n");
+	printf("Enter your choice: \n");
+	scanf("%d", &selection);
 	
-	printf("**ERINSTAGRAM**\n");
-	printf("1: Load image\n");
-	printf("2: Display image\n");
-	printf("3: Edit image\n");
-	printf("0: Exit\n");
+	switch (selection){
 	
-	printf("\nChoose from one of the options above: ");
-	scanf("%d", &ch);
-	
-	
-	if(ch == 1){
-		loadImg(pic[1][1]);
-	} else if(ch == 2){
-	
-	} else if(ch == 3){
-	
-	} else if(ch == 0){
-		printf("\nGoodbye!\n\n");
-	} else {
-		printf("Invalid option, please try again.\n");
-	}
-	
-	
-	
-	} while(ch != 0);
+		case 1:
+		printf("Enter your file name: ");
+		scanf("%c", fileName);
+		loadImg(fileName);
+		break;
+		
+		case 2:
+		displayMenu();
+		break;
+		
+		case 3:
+		editMenu();
+		break;
+		
+		case 4:
+		
+		return 0;
+		break;
+		
+		default:
+		printf("Invalid selection. Please try again.\n");
+		break;
+		}
+	}					
+
 }
 
-int loadImg(int pic[][MACRO]) {
-
-	FILE *in_Fp;
-	
-    	in_Fp = fopen(IN, "r");
-    	
-	if(in_Fp == NULL){
-		printf("File could not be opened\n");
-		return 0;
-	}
-	
-	for(int i = 0; i < MACRO; i++){
-		for(int k = 0; k < MACRO; k++){
-		}
-	}
+int loadImg(Image *image, char *fileName) {
+    
 }
 
 char convertImg() {
@@ -70,16 +80,92 @@ void displayImage() {
 
 int editMenu() {
 
+
+	char fileName[100];
+
+	int selection;
+	
+	while(true){
+
+	printf(" Menu: \n");
+	printf("1. Crop Image: \n");
+	printf("2. Dim the Image: \n");
+	printf("3. Brighten the Image: \n");
+	printf("4. Save Image: \n");
+	printf("5. Back to main menu: \n");
+	printf("Enter your choice: \n");
+	scanf("%d", &selection);
+	
+	switch (selection){
+	
+		case 1:
+		cropImg();
+		break;
+		
+		case 2:
+		dimImg();
+		break;
+		
+		case 3:
+		brightenImg();
+		break;
+		
+		case 4:
+		saveImg(fileName);
+		break;
+		
+		case 5:
+		saveImg(fileName);
+		break;
+		
+		
+		default:
+		printf("Invalid selection. Please try again.\n");
+		break;
+		}
+	}					
+
+}
+
 }
 
 void cropImg(){
-
+	for(int j = 0; j < height; j++){
+	   for(int k = 0; k < width; k++){
+	     if(pixels[j][k] > 0){
+		pixels[j][k]--;
+			}
+		}
+	}
+	
 }
 
 void dimImg(){
+for(int j = 0; j < height; j++){
+	   for(int k = 0; k < width; k++){
+	     if(pixels[j][k] > 0){
+		pixels[j][k]--;
+			}
+		}
+	}
+	
+}
 
 }
 
 void brightenImg(){
+for(int j = 0; j < height; j++){
+	   for(int k = 0; k < width; k++){
+	     if(pixels[j][k] < 255){
+		pixels[j][k]++;
+			}
+		}
+	}
+	
+}
+
+}
+
+void saveImg(Image *image, char *fileName){
 
 }
