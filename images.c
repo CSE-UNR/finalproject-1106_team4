@@ -9,7 +9,7 @@ int width, height;
 int pixels[MAX_SIZE][MAX_SIZE];
 
 int loadImg(char *fileName);
-void displayImage();
+void displayImage(char img[][100]);
 void editMenu();
 void cropImg();
 void dimImg();
@@ -23,6 +23,7 @@ int saveImg(char *fileName);
 int main() {
 
 	char fileName[100];
+	char img[100][100];
 
 	int selection;
 	
@@ -40,16 +41,16 @@ int main() {
 	
 		case 1:
 		printf("Enter your file name: ");
-<<<<<<< HEAD
+
 		fgets(fileName, 100, stdin);
-=======
+
 		scanf("%s", fileName);
->>>>>>> 79ff484c27892b01ad0f9443ae60bec3d2ac1ed6
+
 		loadImg(fileName);
 		break;
 		
 		case 2:
-		displayImage();
+		displayImage(img[100][100]);
 		break;
 		
 		case 3:
@@ -83,7 +84,7 @@ int loadImg(char *fileName) {
 	}
 	fclose(image);
 }
-void displayImage() {
+void displayImage(char img[][100]) {
 
 	char can;
 	
