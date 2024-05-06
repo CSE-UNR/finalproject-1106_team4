@@ -6,7 +6,7 @@
 #define MAX_SIZE 10000
 
 int width, height;
-int pixels[MAX_SIZE][MAX_SIZE]
+int pixels[MAX_SIZE][MAX_SIZE];
 
 void loadImg(char *fileName);
 void convertImg();
@@ -41,7 +41,7 @@ int main() {
 	
 		case 1:
 		printf("Enter your file name: ");
-		scanf("%c", fileName);
+		fgets(fileName, 100, stdin);
 		loadImg(fileName);
 		break;
 		
@@ -76,6 +76,17 @@ char convertImg() {
 
 void displayImage() {
 
+	char can;
+	
+	for(int i = 0; i < 1000; i++){
+		for(int k = 0; can != 1 ; k++){
+			if(img[i][k] == "\n"){
+				can = 1;
+			} else {
+				printf("%c", img[i][k]);
+			}
+		}
+	}
 }
 
 int editMenu() {
@@ -141,7 +152,7 @@ void cropImg(){
 }
 
 void dimImg(){
-for(int j = 0; j < height; j++){
+	for(int j = 0; j < height; j++){
 	   for(int k = 0; k < width; k++){
 	     if(pixels[j][k] > 0){
 		pixels[j][k]--;
@@ -149,14 +160,14 @@ for(int j = 0; j < height; j++){
 		}
 	}
 	
-}
+	}
 
 }
 
 void brightenImg(){
-for(int j = 0; j < height; j++){
+	for(int j = 0; j < height; j++){
 	   for(int k = 0; k < width; k++){
-	     if(pixels[j][k] < 255){
+	     if(pixels[j][k] < 4){
 		pixels[j][k]++;
 			}
 		}
