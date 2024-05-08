@@ -22,13 +22,14 @@ int saveImg(char *fileName, int pixels[][MAX_SIZE]);
 int main() {
 
 	char fileName[100];
-	char img[MAX_SIZE][MAX_SIZE];
-	int pixels[MAX_SIZE][MAX_SIZE];
+	
+	int columns = 1;
+	int rows = 1;
+	
+	char img[rows][columns];
+	int pixels[rows][columns];
 
 	int selection;
-	
-	int columns = 0;
-	int rows = 0;
 	
 	while(true){
 
@@ -54,6 +55,8 @@ int main() {
 		rows = row(fileName);
 		printf("%d", rows);
 		printf("%d", columns);
+		
+		
 		loadImg(fileName, pixels);
 		break;
 		
@@ -80,7 +83,7 @@ int main() {
 
 int row(char *fileName){
 	int column = 0;
-	int r = 0;
+	int r = 1;
 	int c = 0;
 	char temp;
 	
@@ -104,7 +107,7 @@ int row(char *fileName){
 }
 
 int column(char *fileName){
-	int column = 0;
+	int column = 1;
 	int r = 0;
 	int c = 0;
 	char temp;
@@ -153,10 +156,15 @@ int loadImg(char *fileName, int pixels[MAX_SIZE][MAX_SIZE]) {
 
 void displayImage(int pixels[MAX_SIZE][MAX_SIZE], char img[MAX_SIZE][MAX_SIZE], int row, int col) {
 	
+	int len = 0;
 	for(int i = 0; i < row; i++){
+		if(col < len){
+			printf("\n");
+			len = 0;
+		}
 		for(int k = 0; k < col ; k++){
 				if(pixels[i][k] == 0){
-					img[i][k] = 'p';
+					img[i][k] = ' ';
 					printf("%c", img[i][k]);
 				} else if(pixels[i][k] == 1){
 					img[i][k] = '.';
@@ -170,7 +178,11 @@ void displayImage(int pixels[MAX_SIZE][MAX_SIZE], char img[MAX_SIZE][MAX_SIZE], 
 				} else if (pixels[i][k] == 4){
 					img[i][k] = '0';
 					printf("%c", img[i][k]);
+				} else if (pixels[i][k] = '\n') {
+					img[i][k] = 'e';
+					printf("%c", img[i][k]);
 				}
+				len++;
 		}
 	}
 	
