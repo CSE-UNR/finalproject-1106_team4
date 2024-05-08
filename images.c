@@ -77,7 +77,9 @@ int main() {
 		printf("Invalid selection. Please try again.\n");
 		break;
 		}
-	}					
+	}		
+	
+	return 0;			
 
 }
 
